@@ -2,10 +2,10 @@
 
 
 {% block content %} <form action="/response">
-	              <select name="states">
+	               <select name="states">
 		         {{states}}
-		      </select>
-		      <br><br>
-	              <input type="submit">
+		       </select>
+		       <br><br>
+	               <input type="submit">
                     </form>
 </form> {% endblock %}
