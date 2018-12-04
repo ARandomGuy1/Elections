@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+
+{% block content %} <form action="/response">
+	                  	<select name="states">
+			                  {{states}}
+		                  </select>
+		                  <br><br>
+	                   	<input type="submit">
+                    </form>
+</form> {% endblock %}
