@@ -3,11 +3,18 @@
 {% set active_page  = "page1" %}
 
 
-{% block content %} <form action="/response">
-	               <select name="states">
-		         {{states}}
-		       </select>
-		       <br><br>
-	               <input type="submit">
+{% block content %} <form action="/p1">
+	                  <select name="states">
+		                {{states}}
+		              </select>
+					  <select>
+						{{candidates}}
+					  </select>
+		              <br><br>
+	                  <input type="submit">
                     </form>
-</form> {% endblock %}
+					
+					
+					
+					<p>{{ response }} </p>
+ {% endblock %}
