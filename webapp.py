@@ -20,6 +20,21 @@ def render_response();
         election = json.load(election_data)
     state = request.args["states"]
     candidate = request.args["candidates"]
+    states = {}
+    candidateInState = {}
+    listOfCandidates = get_candidates_list()
+    pop = 0
+    for x in range(0, len(election)):
+        if election[x]["Location"]["State"] not in states:
+            for y in listOfCandidates:
+                pop += election[x]["Vote Data"][y]["Number of Votes"]
+            states[election[x]["Location"]["State"]] = pop
+            pop = 0
+        else:
+            for y in listOfCandidates:
+                states[election[x]["Location"]["State"]] += election[x]["Vote Data"][y]["Number of Votes"]
+    
+        
     
     
 def get_state_options(election):
@@ -53,6 +68,24 @@ def get_candidates():
     for x in listOfCandidates:
         options += Markup("<option value=\"" + x + "\">" + x + "</option>")
     return options
+
+def get_candidates_list():
+    listOfCandidates = []
+    listOfCandidates.append("Rand Paul") 
+    listOfCandidates.append("Rick Santorum") 
+    listOfCandidates.append("Martin O'Malley") 
+    listOfCandidates.append("Chris Christie") 
+    listOfCandidates.append("Jeb Bush") 
+    listOfCandidates.append("Hillary Clinton") 
+    listOfCandidates.append("John Kasich") 
+    listOfCandidates.append("Donald Trump") 
+    listOfCandidates.append("Mike Huckabee") 
+    listOfCandidates.append("Marco Rubio") 
+    listOfCandidates.append("Bernie Sanders") 
+    listOfCandidates.append("Carly Fiorina") 
+    listOfCandidates.append("Ben Carson") 
+    listOfCandidates.append("Ted Cruz") 
+    return listOfCandidates 
 
 
 if __name__=="__main__":
