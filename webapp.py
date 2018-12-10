@@ -30,9 +30,16 @@ def render_response();
                 pop += election[x]["Vote Data"][y]["Number of Votes"]
             states[election[x]["Location"]["State"]] = pop
             pop = 0
+            candidateInState[election[x]["Location"]["State"]] = election[x]["Vote Data"][candidate]["Number of Votes"]
         else:
             for y in listOfCandidates:
                 states[election[x]["Location"]["State"]] += election[x]["Vote Data"][y]["Number of Votes"]
+             candidateInState[election[x]["Location"]["State"]] += election[x]["Vote Data"][candidate]["Number of Votes"]
+    fact = 0
+    for x in states:
+        if x == state:
+            fact = states[x]/candidateInState[x]
+    return render_template("page1.html", response = fact)
     
         
     
