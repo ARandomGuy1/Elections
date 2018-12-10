@@ -14,8 +14,8 @@ def render_main():
         election = json.load(election_data)
     return render_template('page1.html', states = get_state_options(election), candidates = get_candidates())
     
-@app.route("/p1")
-def render_response();
+@app.route("/response")
+def render_response():
     with open('election.json') as election_data:
         election = json.load(election_data)
     state = request.args["states"]
@@ -34,11 +34,11 @@ def render_response();
         else:
             for y in listOfCandidates:
                 states[election[x]["Location"]["State"]] += election[x]["Vote Data"][y]["Number of Votes"]
-             candidateInState[election[x]["Location"]["State"]] += election[x]["Vote Data"][candidate]["Number of Votes"]
+            candidateInState[election[x]["Location"]["State"]] += election[x]["Vote Data"][candidate]["Number of Votes"]
     fact = 0
     for x in states:
         if x == state:
-            fact = states[x]/candidateInState[x]
+            fact = candidateInState[x]/states[x]
     return render_template("page1.html", response = fact)
     
         
