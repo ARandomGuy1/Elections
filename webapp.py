@@ -9,7 +9,7 @@ def render_main():
     return render_template('home.html')
 
 @app.route("/p1")
-def render_main():
+def render_page1():
     with open('election.json') as election_data:
         election = json.load(election_data)
     return render_template('page1.html', states = get_state_options(election), candidates = get_candidates())
@@ -39,8 +39,8 @@ def render_response():
     fact = 0
     for x in states:
         if x == state:
-            fact = candidateInState[x]/states[x]
-    return render_template("page1.html", response = fact)
+            fact = (candidateInState[x]/states[x])*100
+    return render_template("page1.html", response = fact, states = get_state_options(election), candidates = get_candidates())
     
         
     
@@ -73,6 +73,7 @@ def get_candidates():
     listOfCandidates.append("Carly Fiorina") 
     listOfCandidates.append("Ben Carson") 
     listOfCandidates.append("Ted Cruz") 
+    options = ""
     for x in listOfCandidates:
         options += Markup("<option value=\"" + x + "\">" + x + "</option>")
     return options
