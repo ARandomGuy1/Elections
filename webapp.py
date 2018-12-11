@@ -14,6 +14,7 @@ def render_main():
         election = json.load(election_data)
     return render_template('page1.html', states = get_state_options(election), candidates = get_candidates())
     
+
 @app.route("/response")
 def render_response():
     with open('election.json') as election_data:
