@@ -14,10 +14,13 @@ def render_page1():
         election = json.load(election_data)
     return render_template('page1.html', states = get_state_options(election), candidates = get_candidates())
     
+@app.route("/p2")
+def render_page2():
+    return render_template("page2.html")
+    
 
 @app.route("/response")
 def render_response():
-    print(1)
     with open('election.json') as election_data:
         election = json.load(election_data)
     state = request.args["states"]
@@ -73,8 +76,7 @@ def render_response():
                             fact2 = (candidateInState[y]/statesR[y])*100
                         else:
                             fact2 = 0
-                
-    print(0)            
+                          
     return render_template("page1.html", response = candidate + " got " + str(fact) + "% of the vote in " + state, response2 = candidate + " got " + str(fact2) + "% of the vote in their party in " + state, states = get_state_options(election), candidates = get_candidates())
     
         

@@ -1,0 +1,32 @@
+{% extends "layout.html" %}
+
+{% set active_page  = "page2" %}
+{% block head %}<script>
+window.onload = function() {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title: {
+		text: "percent of the delegates each candidate won in the democratic primaries"
+	},
+	data: [{
+		type: "pie",
+		startAngle: 240,
+		yValueFormatString: "##0.00\"%\"",
+		indexLabel: "{label} {y}",
+		dataPoints: [
+			{y: 59.72, label: "Hillary Clinton"},
+			{y: 40.27, label: "Bernie Sanders"},
+		]
+	}]
+});
+chart.render();
+
+}
+</script>
+ {% endblock %}
+
+{% block content %} 
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+ {% endblock %}
