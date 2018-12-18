@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% set active_page  = "page3" %}
+{% block head %}<script>
+window.onload = function() {
+
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	title: {
+		text: "percent of the delegates each candidate won in the republican primaries"
+	},
+	data: [{
+		type: "pie",
+		startAngle: 240,
+		yValueFormatString: "##0.00\"%\"",
+		indexLabel: "{label} {y}",
+		dataPoints: [
+			{y: 62.45, label: "Donald Trump"},
+			{y: 22.77, label: "Ted Cruz"},
+			{y: 6.75, label: "Marco Rubio"},
+			{y: 6.51, label: "John Kasich"},
+			{y: 0.28, label: "Ben Carson"},
+			{y: 0.04, label: "Jeb Bush"}
+		]
+	}]
+});
+chart.render();
+
+}
+</script>
+ {% endblock %}
+
+{% block content %} 
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+ {% endblock %}
